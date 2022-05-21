@@ -1,0 +1,10 @@
+.DragAndDropContainer{
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    height: 500px;
+    border: 2px black solid
+}
+.aa{
+    background-color: red;
+}

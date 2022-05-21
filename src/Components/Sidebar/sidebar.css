@@ -1,0 +1,17 @@
+.Sidebar{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+input{
+    background-color: aqua;
+    width: 50px;
+}
+.SidebarElementsCotianer{
+    display: flex;
+    flex-direction: column;
+}
+.SidebarElement{
+    display: flex;
+    justify-content: space-between;
+}

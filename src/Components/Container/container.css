@@ -1,0 +1,14 @@
+
+.Dropable{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+}
+.Box{
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    height: 800px;
+    border: 2px rgb(66, 38, 133) dotted
+}
