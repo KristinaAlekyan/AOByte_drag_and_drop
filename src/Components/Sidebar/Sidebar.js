@@ -1,27 +1,25 @@
 import "./sidebar.css";
+import {drawElement} from "../../utils"
 
-function Sidebar({sidebarElements, dragStart, dragEnd}) {
-  return (
-    <div className="Sidebar">
-        <h1>Sidebar</h1> 
-        <form className="SidebarElementsCotianer">
+function Sidebar({ sidebarElements, dragStart, dragEnd, onReset }) {
+    return (
+        <div className="Sidebar">
+            <h1>Sidebar</h1>
             {sidebarElements.map((element) => (
-            <div className="SidebarElement" key={element.id}>
-                <label htmlFor={element.id}>{element.name}</label>
-                <input                    
-                    id={element.id}
-                    type={element.type}                      
-                    draggable='true'
-                    onDragStart={(e) => dragStart(e, element.type)}
-                    onDragEnd={dragEnd}
-                />                
-            </div>
-            
-
+                <div 
+                    className="SidebarElement" 
+                    key={element.id}                     
+                    draggable
+                    onDragStart={dragStart}
+                    onDragEnd={dragEnd}                    
+                >
+                    {drawElement(element)}               
+                </div>
             ))}
-          </form>
-    </div>
-  );
+            <button onClick={onReset}>Reset</button>
+            
+        </div>
+    );
 }
 
 export default Sidebar;
