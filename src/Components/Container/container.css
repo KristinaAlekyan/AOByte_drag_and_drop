@@ -16,10 +16,13 @@
 
 .cell{
     width: 150px;
-    height: 60px;
-    border: 1px solid grey;
+    height: 60px;    
 }
 .activ{
-    border: 2px grey solid;
-    background-color: red;
+    border: 2px grey dotted;
+}
+.dropped{
+    width: 150px;
+    height: 60px;
+    border: 1px solid green;
 }

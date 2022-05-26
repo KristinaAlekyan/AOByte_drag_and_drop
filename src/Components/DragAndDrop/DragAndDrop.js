@@ -2,28 +2,10 @@ import "./dragAndDrop.css";
 import { useState } from "react"
 import Sidebar from "../Sidebar/Sidebar.js";
 import Container from "../Container/Container";
-
-
-export const initalSidebarElements = [
-    {   
-        id: 1,
-        name: "input",
-        type: "button"
-    },
-    {   
-        id: 5,
-        name: "input",
-        type: "checkbox"
-    },
-    {   
-        id: 6,
-        name: "input",
-        type: "radio"
-    }
-];
+import Modal from "../Modal/Modal"
+import {elements} from "../../config"
 
 function DragAndDrop() {
-    const   [sidebarElements] = useState(initalSidebarElements)
     const   [dragElement, setDragElement] = useState('');
     const   [dropElements, setDropElements] = useState([0, 0, 0, 0, 0,
                                                         0, 0, 0, 0, 0,
@@ -33,44 +15,44 @@ function DragAndDrop() {
                                                     ]);
     const   [dropLastElement, setDropLastElement] = useState(-1);
     const   [dragable, setDragable] = useState(false);
+    const   [modalIsOpend] = useState(false)
   
-    const dragStart = (e) => {
+    const onDragStartHandler = (e) => {
         e.stopPropagation();          
-        setDragElement(e.target.children[1]);
+        setDragElement(e.target.textContent);
         setDragable(true);
     }
   
-    const dragEnd = (e) => {
+    const onDragEndHandler = (e) => {
         e.stopPropagation();
+        setDragable(false);
     }
-    const dragOver = (e) => {       
+    const onDragOverHandler = (e) => {       
         e.preventDefault();
-        e.stopPropagation();  
+        e.stopPropagation();
+
     }
   
-    const drop = (e, index) => {      
+    const onDropHandler = (e, index) => {      
         e.preventDefault();
         e.stopPropagation();
         const dropElems = [...dropElements]
 
         for(let i = 0; i < dropElems.length; i++){
             if(i === index){
-                dropElems[i] = {id: index, name: dragElement.name, type: dragElement.type}
-            } else if(  i === index - 1 || 
+                dropElems[i] = {id: index, name: dragElement}
+            } else if((  i === index - 1 || 
                         i === index + 1 || 
                         i === index - 5 || 
-                        i === index + 5 ) 
-                    {
-                        if(dropElems[i]=== 0){
-                            dropElems[i] = 1
-                        }                
-                    }
+                        i === index + 5 ) &&(dropElems[i]=== 0)){
+                dropElems[i] = 1
+            }       
         }
         setDropElements(dropElems);
         setDropLastElement(index);
     }
 
-    const onReset = (e) =>{            
+    const onReDoHandler = (e) =>{            
         e.preventDefault();
         e.stopPropagation();
         const dropElems = [...dropElements]
@@ -82,7 +64,7 @@ function DragAndDrop() {
                         i === dropLastElement + 1 ||
                         i === dropLastElement - 5 ||
                         i === dropLastElement + 5) && (dropElems[i] === 1)
-            ) dropElems[i]= 0
+            ) {dropElems[i]= 0}
         }
 
         setDropElements(dropElems);
@@ -90,22 +72,23 @@ function DragAndDrop() {
   
   
     return (
-      <div className="DragAndDropContainer">  
-          <Sidebar
-              sidebarElements = {sidebarElements}
-              dragStart={dragStart}
-              dragEnd={dragEnd}
-              onReset={onReset}
-          />
-          <Container        
-              sidebarElements={sidebarElements}
-              drop={drop}
-              dragOver={dragOver}
-              dragElement={dragElement}
-              dropElements={dropElements}
-              dragable={dragable}
-          />
-      </div>
+        <div className="DragAndDropContainer">  
+                <Sidebar
+                        sidebarElements = {elements}
+                        onDragStartHandler={onDragStartHandler}
+                        onDragEndHandler={onDragEndHandler}
+                        onReDoHandler={onReDoHandler}
+                />
+                <Container        
+                        sidebarElements={elements}
+                        onDropHandler={onDropHandler}
+                        onDragOverHandler={onDragOverHandler}
+                        dragElement={dragElement}
+                        dropElements={dropElements}
+                        dragable={dragable}
+                />
+                <Modal modalIsOpend={modalIsOpend}/>
+        </div>
     );
 }
   

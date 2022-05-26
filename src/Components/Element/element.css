@@ -1,0 +1,27 @@
+input {
+    margin-top: 1px;
+    width: 80%;
+}
+
+button{
+    margin: 1px;
+}
+textarea {
+    width: 80%;
+    margin: 1px;
+}
+
+select {
+    margin: 10px;
+    width: 90px;
+}
+.element{
+    display: flex;
+    flex-direction: column;
+}
+.actionBtn{
+    width: 50px;
+    background-color:aquamarine;
+    border-radius: 5px;
+    border: 0.1px solid;
+}

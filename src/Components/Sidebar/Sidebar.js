@@ -1,22 +1,21 @@
 import "./sidebar.css";
-import {drawElement} from "../../utils"
 
-function Sidebar({ sidebarElements, dragStart, dragEnd, onReset }) {
+function Sidebar({ sidebarElements, onDragStartHandler, onDragEndHandler, onReDoHandler }) {
     return (
         <div className="Sidebar">
             <h1>Sidebar</h1>
             {sidebarElements.map((element) => (
-                <div 
+                <button 
                     className="SidebarElement" 
                     key={element.id}                     
                     draggable
-                    onDragStart={dragStart}
-                    onDragEnd={dragEnd}                    
+                    onDragStart={onDragStartHandler}
+                    onDragEnd={onDragEndHandler}                    
                 >
-                    {drawElement(element)}               
-                </div>
+                    {element.name}               
+                </button>
             ))}
-            <button onClick={onReset}>Reset</button>
+            <button onClick={onReDoHandler}>Redo</button>
             
         </div>
     );

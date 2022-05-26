@@ -1,8 +1,9 @@
-import { drawElement } from "../../utils";
-import "./container.css";      
+import "./container.css";  
+import Element from "../Element/Element" 
 
 
-function Container({drop, dragOver, dropElements, draggable}) { 
+function Container({onDropHandler, onDragOverHandler, dropElements, dragable}) {
+    console.log(dragable)
     return (
         <div className='Dropable'>                        
             <h2>Container</h2>  
@@ -10,17 +11,23 @@ function Container({drop, dragOver, dropElements, draggable}) {
                 className="Box"
             >
                 {dropElements.map((item, i)=>
-                    <div 
-                        className= {"cell " + ((item === 1)? "activ" : "")}
-                        key = {i}
-                        onDrop={(e)=>drop(e,i)}                        
-                        draggable={draggable}                         
-                        onDragOver={dragOver}                        
-                    > 
-                        { typeof item !== "number"?
-                             drawElement(item): <></>
+                    <div
+                        className={"cell " + ((dragable && item === 1)? "activ" : "")+(typeof item !=="number"? "dropped" : "")}
+                        key={i}
+                        onDrop={(e)=>onDropHandler(e,i)}
+                        dragable={dragable.toString()}
+                        onDragOver={onDragOverHandler}                        
+                    >
+                        {item?
+                            <Element
+                                name={item.name}
+                            />
+                        : <div></div>
                         }
-                      
+                        
+
+
+                        
                     </div>                    
                 )}
             </div>
