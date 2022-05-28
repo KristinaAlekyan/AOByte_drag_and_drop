@@ -16,7 +16,6 @@ function Sidebar({ sidebarElements, onDragStartHandler, onDragEndHandler, onReDo
                 </button>
             ))}
             <button onClick={onReDoHandler}>Redo</button>
-            
         </div>
     );
 }

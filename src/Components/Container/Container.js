@@ -16,18 +16,14 @@ function Container({onDropHandler, onDragOverHandler, dropElements, dragable}) {
                         key={i}
                         onDrop={(e)=>onDropHandler(e,i)}
                         dragable={dragable.toString()}
-                        onDragOver={onDragOverHandler}                        
+                        onDragOver={(item === 1)?onDragOverHandler: undefined}                        
                     >
                         {item?
                             <Element
                                 name={item.name}
                             />
                         : <div></div>
-                        }
-                        
-
-
-                        
+                        } 
                     </div>                    
                 )}
             </div>

@@ -6,6 +6,7 @@ input {
 button{
     margin: 1px;
 }
+
 textarea {
     width: 80%;
     margin: 1px;
@@ -15,10 +16,12 @@ select {
     margin: 10px;
     width: 90px;
 }
+
 .element{
     display: flex;
     flex-direction: column;
 }
+
 .actionBtn{
     width: 50px;
     background-color:aquamarine;
