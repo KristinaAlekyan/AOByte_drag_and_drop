@@ -1,6 +1,21 @@
 import "./sidebar.css";
+import { useDispatch } from "react-redux";
+import { dragStart, dragEnd} from "../../redux/dragAndDropSlice";
 
-function Sidebar({ sidebarElements, onDragStartHandler, onDragEndHandler, onReDoHandler }) {
+function Sidebar({ sidebarElements, onReDoHandler }) {
+    const dispatch = useDispatch();
+
+    const onDragStartHandler = (e) =>{
+        e.stopPropagation();
+        const elementType = e.target.textContent;
+        dispatch(dragStart({elementType}));
+    }
+    
+    const onDragEndHandler = (e) =>{
+        e.stopPropagation();
+        dispatch(dragEnd())
+    }
+
     return (
         <div className="Sidebar">
             <h1>Sidebar</h1>

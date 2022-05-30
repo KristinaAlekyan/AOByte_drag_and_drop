@@ -1,21 +1,26 @@
 import "./container.css";  
 import Element from "../Element/Element" 
+import { useSelector } from "react-redux";
+import { draggableSelector } from "../../redux/dragAndDropSlice";
 
+function Container({onDropHandler, dropElements}) {
+    const draggable = useSelector(draggableSelector); 
 
-function Container({onDropHandler, onDragOverHandler, dropElements, dragable}) {
-    console.log(dragable)
+    const onDragOverHandler = (e) => {       
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
     return (
         <div className='Dropable'>                        
             <h2>Container</h2>  
-            <div 
-                className="Box"
-            >
+            <div className="Box">
                 {dropElements.map((item, i)=>
                     <div
-                        className={"cell " + ((dragable && item === 1)? "activ" : "")+(typeof item !=="number"? "dropped" : "")}
+                        className={"cell " + ((draggable && item === 1)? "activ" : "")+(typeof item !=="number"? "dropped" : "")}
                         key={i}
                         onDrop={(e)=>onDropHandler(e,i)}
-                        dragable={dragable.toString()}
+                        draggable={draggable}
                         onDragOver={(item === 1)?onDragOverHandler: undefined}                        
                     >
                         {item?
@@ -24,7 +29,7 @@ function Container({onDropHandler, onDragOverHandler, dropElements, dragable}) {
                             />
                         : <div></div>
                         } 
-                    </div>                    
+                    </div>
                 )}
             </div>
         </div>

@@ -5,6 +5,7 @@
     align-items: center;    
     width: 1200px;
 }
+
 .Box{
     display: flex;
     justify-content: center;
@@ -18,9 +19,11 @@
     width: 150px;
     height: 60px;    
 }
+
 .activ{
     border: 2px grey dotted;
 }
+
 .dropped{
     width: 150px;
     height: 60px;
