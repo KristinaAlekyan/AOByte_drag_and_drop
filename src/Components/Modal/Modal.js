@@ -1,9 +1,12 @@
-import "./modal.css";
+import { useSelector } from "react-redux";
 
-export default function Modal({modalIsOpend}) {
+import "./modal.css";
+import { modalIsOpenSelector } from "../../redux/dragAndDropSlice";
+
+export default function Modal() {  
+    const modalIsOpen = useSelector(modalIsOpenSelector); 
+
     return(
-        <>
-            {modalIsOpend?<div >  Modal  </div>: <></>}
-        </>
+        <div className={modalIsOpen?"modal": ""}></div>
     )
 }

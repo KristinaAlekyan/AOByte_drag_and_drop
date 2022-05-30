@@ -9,7 +9,8 @@ const initialState = {
                     0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0,
                   ],
-    lastDropedIndex: -1
+    lastDropedIndex: -1,
+    modalIsOpen: false
 };
 
 export const dragAndDropSlice = createSlice({
@@ -22,14 +23,14 @@ export const dragAndDropSlice = createSlice({
                 dragElement: action.payload
             }
         },
-
-        /*drop: (state ,action)=>{
-            
-        },*/
-
         dragEnd: (state) => {
             return {
                 dragElement: ""
+            }
+        },
+        openModal: (state) =>{
+            return {
+                modalIsOpen: true
             }
         }
     }
@@ -38,12 +39,12 @@ export const dragAndDropSlice = createSlice({
 export const {
     dragStart,
     drop,
-    dragEnd
+    dragEnd,
+    openModal
 } = dragAndDropSlice.actions;
 
 export const draggableSelector = state => state.dragAndDropSlice.draggable;
 export const dragElementSelector = state => state.dragAndDropSlice.dragElement;
-
-
+export const modalIsOpenSelector = state => state.dragAndDropSlice.modalIsOpen;
 
 export default dragAndDropSlice.reducer;

@@ -1,4 +1,4 @@
-export const elements = [
+export const sidebarElements = [
     {   
         id: 1,
         name: "button"
